@@ -11,7 +11,7 @@
 
 	<title>
 		@section('title')
-			{{{ $title }}} :: Administration
+			Administration
 		@show
 	</title>
 
@@ -44,24 +44,16 @@
 	<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
 
 	<!-- CSS -->
-   <!-- <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}"> -->
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/prettify.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet"
-href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
 	<style>
-	.tab-pane {
-		padding-top: 20px;
+	body {
+		padding: 60px 0;
 	}
 	</style>
 
@@ -72,39 +64,59 @@ href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
-	<!-- Asynchronous google analytics; this is the official snippet.
-	 Replace UA-XXXXXX-XX with your site's ID and uncomment to enable.
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-	  	_gaq.push(['_setAccount', 'UA-31122385-3']);
-	  	_gaq.push(['_trackPageview']);
-
-	  	(function() {
-	   		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  	})();
-
-	</script> -->
-
 </head>
 
 <body>
 	<!-- Container -->
 	<div class="container">
+		<!-- Navbar -->
+		<div class="navbar navbar-default navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+    			<div class="collapse navbar-collapse navbar-ex1-collapse">
+    				<ul class="nav navbar-nav">
+    					<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+    					<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><span class="glyphicon glyphicon-list-alt"></span> Blog</a></li>
+    					<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Comments</a></li>
+    					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
+    						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
+    							<span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
+    						</a>
+    						<ul class="dropdown-menu">
+    							<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/users') }}}"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+    							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><span class="glyphicon glyphicon-user"></span> Roles</a></li>
+    						</ul>
+    					</li>
+    				</ul>
+    				<ul class="nav navbar-nav pull-right">
+    					<li><a href="{{{ URL::to('/') }}}">View Homepage</a></li>
+    					<li class="divider-vertical"></li>
+    					<li class="dropdown">
+    							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+    								<span class="glyphicon glyphicon-user"></span> {{{ Auth::user()->username }}}	<span class="caret"></span>
+    							</a>
+    							<ul class="dropdown-menu">
+    								<li><a href="{{{ URL::to('user/settings') }}}"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+    								<li class="divider"></li>
+    								<li><a href="{{{ URL::to('user/logout') }}}"><span class="glyphicon glyphicon-share"></span> Logout</a></li>
+    							</ul>
+    					</li>
+    				</ul>
+    			</div>
+            </div>
+		</div>
+		<!-- ./ navbar -->
 
 		<!-- Notifications -->
 		@include('notifications')
 		<!-- ./ notifications -->
-
-		<div class="page-header">
-			<h3>
-				{{ $title }}
-				<div class="pull-right">
-					<button class="btn btn-default btn-small btn-inverse close_popup"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</button>
-				</div>
-			</h3>
-		</div>
 
 		<!-- Content -->
 		@yield('content')
@@ -121,7 +133,7 @@ href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 	<!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/wysihtml5/wysihtml5-0.3.0.js')}}"></script>
     <script src="{{asset('assets/js/wysihtml5/bootstrap-wysihtml5.js')}}"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
@@ -130,30 +142,10 @@ href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
 
- <script type="text/javascript">
-$(document).ready(function(){
-$('.close_popup').click(function(){
-parent.oTable.fnReloadAjax();
-parent.jQuery.fn.colorbox.close();
-return false;
-});
-$('#deleteForm').submit(function(event) {
-var form = $(this);
-$.ajax({
-type: form.attr('method'),
-url: form.attr('action'),
-data: form.serialize()
-}).done(function() {
-parent.jQuery.colorbox.close();
-parent.oTable.fnReloadAjax();
-}).fail(function() {
-});
-event.preventDefault();
-});
-});
-$('.wysihtml5').wysihtml5();
-$(prettyPrint)
-</script>
+    <script type="text/javascript">
+    	$('.wysihtml5').wysihtml5();
+        $(prettyPrint);
+    </script>
 
     @yield('scripts')
 

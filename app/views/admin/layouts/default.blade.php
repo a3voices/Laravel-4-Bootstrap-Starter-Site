@@ -43,13 +43,23 @@
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}}">
 	<link rel="apple-touch-icon-precomposed" href="{{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}}">
 
-	<!-- CSS -->
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
+  
+   <!-- <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}"> -->
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/prettify.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/wysihtml5/bootstrap-wysihtml5.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/datatables-bootstrap.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/colorbox.css')}}">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+
 
 	<style>
 	body {
@@ -133,7 +143,8 @@
 
 	<!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="{{asset('assets/js/wysihtml5/wysihtml5-0.3.0.js')}}"></script>
     <script src="{{asset('assets/js/wysihtml5/bootstrap-wysihtml5.js')}}"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
